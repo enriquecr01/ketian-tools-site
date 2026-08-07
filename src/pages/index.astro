@@ -37,6 +37,15 @@ const features = [
 
 <html lang="es">
   <head>
+    <script is:inline>
+      (function () {
+        const stored = localStorage.getItem("theme");
+        const isDark = stored
+          ? stored === "dark"
+          : window.matchMedia("(prefers-color-scheme: dark)").matches;
+        document.documentElement.classList.toggle("dark", isDark);
+      })();
+    </script>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Ketian Tools</title>
@@ -51,7 +60,7 @@ const features = [
       rel="stylesheet"
     />
   </head>
-  <body class="bg-white text-ink">
+  <body class="bg-background text-foreground">
     <Navbar />
 
     <!-- ===================== HERO ===================== -->
@@ -114,7 +123,7 @@ const features = [
             data-repo={GITHUB_REPO}
             variant="outline"
             size="default"
-            className="gap-3 border-4 border-ink bg-ink px-8 py-4 font-display text-xl text-white shadow-[6px_6px_0_0_#FFC93C] hover:shadow-[10px_10px_0_0_#FFC93C] active:shadow-[3px_3px_0_0_#FFC93C]"
+            className="gap-3 border-4 border-ink-fixed bg-ink-fixed px-8 py-4 font-display text-xl text-white shadow-[6px_6px_0_0_#FFC93C] hover:shadow-[10px_10px_0_0_#FFC93C] active:shadow-[3px_3px_0_0_#FFC93C]"
           >
             <span id="download-btn-label">Descargar</span>
             <svg
@@ -144,7 +153,7 @@ const features = [
         {
           features.map((f) => (
             <Card
-              className={`feature-${f.color} border-4 border-ink bg-white shadow-[6px_6px_0_0_var(--tw-shadow-color)]`}
+              className={`feature-${f.color} border-4 border-ink shadow-[6px_6px_0_0_var(--tw-shadow-color)]`}
             >
               <CardHeader>
                 <span class="font-mono text-xs font-semibold tracking-widest text-ink/60">
@@ -166,7 +175,7 @@ const features = [
     </section>
 
     <!-- ===================== GITHUB CTA ===================== -->
-    <section class="border-y-4 border-ink bg-ink">
+    <section class="border-y-4 border-ink-fixed bg-ink-fixed">
       <div
         class="mx-auto flex max-w-5xl flex-col items-start justify-between gap-6 px-6 py-14 md:flex-row md:items-center"
       >
@@ -182,7 +191,7 @@ const features = [
           href={GITHUB_URL}
           target="_blank"
           rel="noopener noreferrer"
-          class="inline-flex items-center gap-3 border-4 border-white bg-white px-6 py-3 font-display text-lg text-ink shadow-[6px_6px_0_0_#FFC93C] transition-transform hover:-translate-x-1 hover:-translate-y-1 hover:shadow-[10px_10px_0_0_#FFC93C]"
+          class="inline-flex items-center gap-3 border-4 border-white bg-white px-6 py-3 font-display text-lg text-ink-fixed shadow-[6px_6px_0_0_#FFC93C] transition-transform hover:-translate-x-1 hover:-translate-y-1 hover:shadow-[10px_10px_0_0_#FFC93C]"
         >
           <svg
             class="h-5 w-5"

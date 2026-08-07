@@ -1,11 +1,11 @@
 ---
 import { Image } from "astro:assets";
 import { Button } from "@/components/ui/button";
-import { Globe, Moon } from "lucide-react";
+import { Globe, Moon, Sun } from "lucide-react";
 import logo from "@/assets/ketiantools.png";
 ---
 
-<nav class="sticky top-0 z-50 border-b-4 border-ink bg-white">
+<nav class="sticky top-0 z-50 border-b-4 border-ink bg-background">
   <div class="mx-auto flex max-w-5xl items-center justify-between px-6 py-3">
     <Image src={logo} alt="Ketian Tools" width={40} height={40} class="h-9 w-9" />
 
@@ -19,13 +19,22 @@ import logo from "@/assets/ketiantools.png";
         <Globe />
       </Button>
       <Button
+        id="theme-toggle"
         variant="outline"
         size="icon"
         aria-label="Alternar modo oscuro"
         className="border-ink text-ink shadow-[3px_3px_0_0_#0D0D0D]"
       >
-        <Moon />
+        <Moon className="block dark:hidden" />
+        <Sun className="hidden dark:block" />
       </Button>
     </div>
   </div>
 </nav>
+
+<script>
+  document.getElementById("theme-toggle")?.addEventListener("click", () => {
+    const isDark = document.documentElement.classList.toggle("dark");
+    localStorage.setItem("theme", isDark ? "dark" : "light");
+  });
+</script>
