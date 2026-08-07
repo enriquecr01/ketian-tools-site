@@ -1,6 +1,7 @@
 ---
 import astroLogo from '../assets/astro.svg';
 import background from '../assets/background.svg';
+import { DocsButton } from './DocsButton';
 ---
 
 <div id="container">
@@ -14,8 +15,8 @@ import background from '../assets/background.svg';
 				To get started, open the <code><pre>src/pages</pre></code> directory in your project.
 			</h1>
 			<section id="links">
-				<a class="button" href="https://docs.astro.build">Read our docs</a>
-				<a href="https://astro.build/chat"
+				<DocsButton />
+				<a class="discord-link" href="https://astro.build/chat"
 					>Join our Discord <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 127.14 96.36"
 						><path
 							fill="currentColor"
@@ -81,7 +82,7 @@ import background from '../assets/background.svg';
 		gap: 16px;
 	}
 
-	#links a {
+	#links .discord-link {
 		display: flex;
 		align-items: center;
 		padding: 10px 12px;
@@ -90,27 +91,13 @@ import background from '../assets/background.svg';
 		transition: color 0.2s;
 	}
 
-	#links a:hover {
+	#links .discord-link:hover {
 		color: rgb(78, 80, 86);
 	}
 
-	#links a svg {
+	#links .discord-link svg {
 		height: 1em;
 		margin-left: 8px;
-	}
-
-	#links a.button {
-		color: white;
-		background: linear-gradient(83.21deg, #3245ff 0%, #bc52ee 100%);
-		box-shadow:
-			inset 0 0 0 1px rgba(255, 255, 255, 0.12),
-			inset 0 -2px 0 rgba(0, 0, 0, 0.24);
-		border-radius: 10px;
-	}
-
-	#links a.button:hover {
-		color: rgb(230, 230, 230);
-		box-shadow: none;
 	}
 
 	pre {
@@ -190,10 +177,6 @@ import background from '../assets/background.svg';
 
 		#links {
 			flex-wrap: wrap;
-		}
-
-		#links a.button {
-			padding: 14px 18px;
 		}
 
 		#news {
