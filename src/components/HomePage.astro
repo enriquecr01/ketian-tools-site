@@ -20,6 +20,12 @@ const GITHUB_URL = `https://github.com/${GITHUB_REPO}`;
 const lang = Astro.currentLocale ?? defaultLang;
 const t = useTranslations(lang);
 
+const footerText = t("footer.text").replace(
+  "{year}",
+  String(new Date().getFullYear()),
+);
+const [footerBefore, footerAfter] = footerText.split("{name}");
+
 const features = [
   {
     tag: "TRANSCRIBE",
@@ -199,7 +205,13 @@ const i18nStrings = {
 <!-- ===================== FOOTER ===================== -->
 <footer class="px-6 py-8">
   <p class="font-mono text-xs text-ink/50">
-    {t("footer.text").replace("{year}", String(new Date().getFullYear()))}
+    {footerBefore}<a
+      href="https://enriquechavezr.com/"
+      target="_blank"
+      rel="noopener noreferrer"
+      class="underline-offset-2 hover:text-ink hover:underline transition-colors"
+      >{t("footer.name")}</a
+    >{footerAfter}
   </p>
 </footer>
 

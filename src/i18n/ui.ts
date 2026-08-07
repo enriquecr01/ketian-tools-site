@@ -33,7 +33,8 @@ export const ui = {
     "cta.heading": "Código abierto en GitHub",
     "cta.paragraph": "Revisa el repo, abre un issue, o clona y compila tú mismo.",
     "cta.link": "Ver en GitHub",
-    "footer.text": "Hecho por Enrique — Ketian Tools © {year}",
+    "footer.text": "Hecho por {name} — Ketian Tools © {year}",
+    "footer.name": "Enrique Chavez Romero",
   },
   en: {
     "meta.title": "Ketian Tools",
@@ -62,6 +63,7 @@ export const ui = {
     "cta.heading": "Open source on GitHub",
     "cta.paragraph": "Check out the repo, open an issue, or clone and build it yourself.",
     "cta.link": "View on GitHub",
-    "footer.text": "Made by Enrique — Ketian Tools © {year}",
+    "footer.text": "Made by {name} — Ketian Tools © {year}",
+    "footer.name": "Enrique Chavez Romero",
   },
 } as const;
