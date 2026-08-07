@@ -1,0 +1,305 @@
+---
+import Navbar from "@/components/Navbar.astro";
+import { Button } from "@/components/ui/button";
+import {
+  Card,
+  CardHeader,
+  CardTitle,
+  CardContent,
+  CardDescription,
+} from "@/components/ui/card";
+import { defaultLang } from "@/i18n/ui";
+import { useTranslations } from "@/i18n/utils";
+
+const GITHUB_REPO = "enriquecr01/ketian-tools";
+const GITHUB_URL = `https://github.com/${GITHUB_REPO}`;
+
+const lang = Astro.currentLocale ?? defaultLang;
+const t = useTranslations(lang);
+
+const features = [
+  {
+    tag: "TRANSCRIBE",
+    color: "sun",
+    title: t("features.transcribe.title"),
+    desc: t("features.transcribe.desc"),
+  },
+  {
+    tag: "CONVERT",
+    color: "coral",
+    title: t("features.convert.title"),
+    desc: t("features.convert.desc"),
+  },
+  {
+    tag: "EXTRACT",
+    color: "blue",
+    title: t("features.extract.title"),
+    desc: t("features.extract.desc"),
+  },
+];
+
+const i18nStrings = {
+  download: t("hero.download"),
+  downloadFor: t("hero.downloadFor"),
+  detecting: t("hero.detecting"),
+  noBuild: t("hero.noBuild"),
+  noReleases: t("hero.noReleases"),
+};
+---
+
+<Navbar />
+
+<!-- ===================== HERO ===================== -->
+<header class="relative overflow-hidden border-b-4 border-ink">
+  <!-- Sol geométrico decorativo -->
+  <svg
+    class="pointer-events-none absolute -right-16 -top-16 h-72 w-72 opacity-90 md:h-96 md:w-96"
+    viewBox="0 0 200 200"
+    fill="none"
+    aria-hidden="true"
+  >
+    <circle
+      cx="100"
+      cy="100"
+      r="42"
+      fill="#FFC93C"
+      stroke="#0D0D0D"
+      stroke-width="4"></circle>
+    {
+      Array.from({ length: 12 }).map((_, i) => {
+        const angle = (i * 30 * Math.PI) / 180;
+        const x1 = 100 + Math.cos(angle) * 58;
+        const y1 = 100 + Math.sin(angle) * 58;
+        const x2 = 100 + Math.cos(angle) * 92;
+        const y2 = 100 + Math.sin(angle) * 92;
+        return (
+          <line
+            x1={x1}
+            y1={y1}
+            x2={x2}
+            y2={y2}
+            stroke="#0D0D0D"
+            stroke-width="6"
+            stroke-linecap="square"
+          />
+        );
+      })
+    }
+  </svg>
+
+  <div class="relative mx-auto max-w-5xl px-6 py-24 md:py-32">
+    <p
+      class="mb-4 inline-block border-2 border-ink bg-sun px-3 py-1 font-mono text-xs font-semibold tracking-widest"
+    >
+      {t("hero.tag")}
+    </p>
+    <h1
+      class="font-display text-6xl leading-[0.95] tracking-tight md:text-8xl"
+    >
+      KETIAN<br />TOOLS
+    </h1>
+    <p class="mt-6 max-w-xl text-lg text-ink/80 md:text-xl">
+      {t("hero.subtitle")}
+    </p>
+
+    <div class="mt-10">
+      <Button
+        id="download-btn"
+        data-repo={GITHUB_REPO}
+        variant="outline"
+        size="default"
+        className="gap-3 border-4 border-ink-fixed bg-ink-fixed px-8 py-4 font-display text-xl text-white shadow-[6px_6px_0_0_#FFC93C] hover:shadow-[10px_10px_0_0_#FFC93C] active:shadow-[3px_3px_0_0_#FFC93C]"
+      >
+        <span id="download-btn-label">{t("hero.download")}</span>
+        <svg
+          class="size-5"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+        >
+          <path
+            d="M12 3v13m0 0-4-4m4 4 4-4M5 21h14"
+            stroke-linecap="round"
+            stroke-linejoin="round"></path>
+        </svg>
+      </Button>
+      <p id="download-sub" class="mt-3 font-mono text-xs text-ink/60">
+        {t("hero.detecting")}
+      </p>
+    </div>
+  </div>
+</header>
+
+<!-- ===================== FEATURES ===================== -->
+<section class="mx-auto max-w-5xl px-6 py-20">
+  <h2 class="font-display text-3xl md:text-4xl">{t("features.heading")}</h2>
+  <div class="mt-10 grid gap-6 md:grid-cols-3">
+    {
+      features.map((f) => (
+        <Card
+          className={`feature-${f.color} border-4 border-ink shadow-[6px_6px_0_0_var(--tw-shadow-color)]`}
+        >
+          <CardHeader>
+            <span class="font-mono text-xs font-semibold tracking-widest text-ink/60">
+              [{f.tag}]
+            </span>
+            <CardTitle className="font-display text-xl text-ink">
+              {f.title}
+            </CardTitle>
+          </CardHeader>
+          <CardContent>
+            <CardDescription className="text-sm leading-relaxed text-ink/75">
+              {f.desc}
+            </CardDescription>
+          </CardContent>
+        </Card>
+      ))
+    }
+  </div>
+</section>
+
+<!-- ===================== GITHUB CTA ===================== -->
+<section class="border-y-4 border-ink-fixed bg-ink-fixed">
+  <div
+    class="mx-auto flex max-w-5xl flex-col items-start justify-between gap-6 px-6 py-14 md:flex-row md:items-center"
+  >
+    <div>
+      <h2 class="font-display text-2xl text-white md:text-3xl">
+        {t("cta.heading")}
+      </h2>
+      <p class="mt-2 text-sm text-white/70">
+        {t("cta.paragraph")}
+      </p>
+    </div>
+    <a
+      href={GITHUB_URL}
+      target="_blank"
+      rel="noopener noreferrer"
+      class="inline-flex items-center gap-3 border-4 border-white bg-white px-6 py-3 font-display text-lg text-ink-fixed shadow-[6px_6px_0_0_#FFC93C] transition-transform hover:-translate-x-1 hover:-translate-y-1 hover:shadow-[10px_10px_0_0_#FFC93C]"
+    >
+      <svg
+        class="h-5 w-5"
+        viewBox="0 0 16 16"
+        fill="currentColor"
+        aria-hidden="true"
+      >
+        <path
+          d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38
+          0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13
+          -.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66
+          .07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15
+          -.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0
+          1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82
+          1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48
+          0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z"
+        ></path>
+      </svg>
+      {t("cta.link")}
+    </a>
+  </div>
+</section>
+
+<!-- ===================== FOOTER ===================== -->
+<footer class="px-6 py-8">
+  <p class="font-mono text-xs text-ink/50">
+    {t("footer.text").replace("{year}", String(new Date().getFullYear()))}
+  </p>
+</footer>
+
+<script define:vars={{ GITHUB_REPO, i18nStrings }}>
+  // Detecta el SO del usuario y busca el asset correspondiente en el
+  // último release público de GitHub. Si algo falla (sin releases,
+  // rate limit, etc.) cae a un link genérico a la página de releases.
+  function detectOS() {
+    const platform =
+      (navigator.userAgentData && navigator.userAgentData.platform) ||
+      navigator.platform ||
+      navigator.userAgent;
+    const p = platform.toLowerCase();
+    if (p.includes("win")) return "windows";
+    if (p.includes("mac")) return "macos";
+    if (p.includes("linux")) return "linux";
+    return "unknown";
+  }
+
+  function matchAsset(assets, os) {
+    const patterns = {
+      windows: [/\.msi$/i, /\.exe$/i, /win(dows)?/i],
+      macos: [/\.dmg$/i, /mac(os)?/i, /darwin/i],
+      linux: [/\.appimage$/i, /\.deb$/i, /\.rpm$/i, /linux/i],
+    };
+    const list = patterns[os] || [];
+    return assets.find((a) => list.some((re) => re.test(a.name)));
+  }
+
+  const OS_LABEL = {
+    windows: "Windows",
+    macos: "macOS",
+    linux: "Linux",
+    unknown: "",
+  };
+
+  async function setupDownload() {
+    const btn = document.getElementById("download-btn");
+    const label = document.getElementById("download-btn-label");
+    const sub = document.getElementById("download-sub");
+    const releasesUrl = `https://github.com/${GITHUB_REPO}/releases`;
+    const os = detectOS();
+
+    label.textContent =
+      os === "unknown"
+        ? i18nStrings.download
+        : i18nStrings.downloadFor.replace("{os}", OS_LABEL[os]);
+
+    try {
+      const res = await fetch(
+        `https://api.github.com/repos/${GITHUB_REPO}/releases/latest`,
+      );
+      if (!res.ok) throw new Error("no releases yet");
+      const data = await res.json();
+      const asset = matchAsset(data.assets || [], os);
+
+      if (asset) {
+        btn.addEventListener("click", () => {
+          window.location.href = asset.browser_download_url;
+        });
+        const sizeMb = (asset.size / (1024 * 1024)).toFixed(1);
+        sub.textContent = `${data.tag_name} · ${sizeMb} MB`;
+      } else {
+        btn.addEventListener("click", () =>
+          window.open(releasesUrl, "_blank"),
+        );
+        sub.textContent = i18nStrings.noBuild;
+      }
+    } catch (err) {
+      btn.addEventListener("click", () =>
+        window.open(releasesUrl, "_blank"),
+      );
+      sub.textContent = i18nStrings.noReleases;
+    }
+  }
+
+  setupDownload();
+</script>
+
+<style>
+  body {
+    font-family: "IBM Plex Sans", sans-serif;
+  }
+  .font-display {
+    font-family: "Archivo Black", sans-serif;
+  }
+  .font-mono {
+    font-family: "JetBrains Mono", monospace;
+  }
+  .feature-sun {
+    --tw-shadow-color: #ffc93c;
+  }
+  .feature-coral {
+    --tw-shadow-color: #ff5470;
+  }
+  .feature-blue {
+    --tw-shadow-color: #3d5afe;
+  }
+</style>
