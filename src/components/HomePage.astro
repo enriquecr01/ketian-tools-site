@@ -1,7 +1,8 @@
 ---
 import { Image } from "astro:assets";
+import { Volume2, Image as ImageIcon, Film } from "lucide-react";
 import Navbar from "@/components/Navbar.astro";
-import { Button } from "@/components/ui/button";
+import { Button, buttonVariants } from "@/components/ui/button";
 import logo from "@/assets/ketiantools.png";
 import {
   Card,
@@ -23,18 +24,21 @@ const features = [
   {
     tag: "TRANSCRIBE",
     color: "sun",
+    icon: Volume2,
     title: t("features.transcribe.title"),
     desc: t("features.transcribe.desc"),
   },
   {
     tag: "CONVERT",
     color: "coral",
+    icon: ImageIcon,
     title: t("features.convert.title"),
     desc: t("features.convert.desc"),
   },
   {
     tag: "EXTRACT",
     color: "blue",
+    icon: Film,
     title: t("features.extract.title"),
     desc: t("features.extract.desc"),
   },
@@ -126,9 +130,12 @@ const i18nStrings = {
           className={`feature-${f.color} border-4 border-ink shadow-[6px_6px_0_0_var(--tw-shadow-color)]`}
         >
           <CardHeader>
-            <span class="font-mono text-xs font-semibold tracking-widest text-ink/60">
-              [{f.tag}]
-            </span>
+            <div class="flex items-center gap-2">
+              <f.icon className="size-4 text-ink/60" />
+              <span class="font-mono text-xs font-semibold tracking-widest text-ink/60">
+                [{f.tag}]
+              </span>
+            </div>
             <CardTitle className="font-display text-xl text-ink">
               {f.title}
             </CardTitle>
@@ -161,7 +168,11 @@ const i18nStrings = {
       href={GITHUB_URL}
       target="_blank"
       rel="noopener noreferrer"
-      class="inline-flex items-center gap-3 border-4 border-white bg-white px-6 py-3 font-display text-lg text-ink-fixed shadow-[6px_6px_0_0_#FFC93C] transition-transform hover:-translate-x-1 hover:-translate-y-1 hover:shadow-[10px_10px_0_0_#FFC93C]"
+      class={buttonVariants({
+        variant: "outline",
+        className:
+          "gap-3 border-4 border-white bg-white px-6 py-3 font-display text-lg text-ink-fixed shadow-[6px_6px_0_0_#FFC93C] hover:-translate-x-1 hover:-translate-y-1 hover:shadow-[10px_10px_0_0_#FFC93C]",
+      })}
     >
       <svg
         class="h-5 w-5"
@@ -252,15 +263,11 @@ const i18nStrings = {
         const sizeMb = (asset.size / (1024 * 1024)).toFixed(1);
         sub.textContent = `${data.tag_name} · ${sizeMb} MB`;
       } else {
-        btn.addEventListener("click", () =>
-          window.open(releasesUrl, "_blank"),
-        );
+        btn.addEventListener("click", () => window.open(releasesUrl, "_blank"));
         sub.textContent = i18nStrings.noBuild;
       }
     } catch (err) {
-      btn.addEventListener("click", () =>
-        window.open(releasesUrl, "_blank"),
-      );
+      btn.addEventListener("click", () => window.open(releasesUrl, "_blank"));
       sub.textContent = i18nStrings.noReleases;
     }
   }
