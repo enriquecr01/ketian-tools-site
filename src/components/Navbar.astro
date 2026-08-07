@@ -1,0 +1,31 @@
+---
+import { Image } from "astro:assets";
+import { Button } from "@/components/ui/button";
+import { Globe, Moon } from "lucide-react";
+import logo from "@/assets/ketiantools.png";
+---
+
+<nav class="sticky top-0 z-50 border-b-4 border-ink bg-white">
+  <div class="mx-auto flex max-w-5xl items-center justify-between px-6 py-3">
+    <Image src={logo} alt="Ketian Tools" width={40} height={40} class="h-9 w-9" />
+
+    <div class="flex items-center gap-2">
+      <Button
+        variant="outline"
+        size="icon"
+        aria-label="Cambiar idioma"
+        className="border-ink text-ink shadow-[3px_3px_0_0_#0D0D0D]"
+      >
+        <Globe />
+      </Button>
+      <Button
+        variant="outline"
+        size="icon"
+        aria-label="Alternar modo oscuro"
+        className="border-ink text-ink shadow-[3px_3px_0_0_#0D0D0D]"
+      >
+        <Moon />
+      </Button>
+    </div>
+  </div>
+</nav>

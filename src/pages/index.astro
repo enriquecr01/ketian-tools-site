@@ -1,5 +1,6 @@
 ---
 import "../styles/global.css";
+import Navbar from "@/components/Navbar.astro";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -51,6 +52,8 @@ const features = [
     />
   </head>
   <body class="bg-white text-ink">
+    <Navbar />
+
     <!-- ===================== HERO ===================== -->
     <header class="relative overflow-hidden border-b-4 border-ink">
       <!-- Sol geométrico decorativo -->
@@ -286,12 +289,6 @@ const features = [
     </script>
 
     <style>
-      :root {
-        --color-ink: #0d0d0d;
-        --color-sun: #ffc93c;
-        --color-coral: #ff5470;
-        --color-blue: #3d5afe;
-      }
       body {
         font-family: "IBM Plex Sans", sans-serif;
       }
@@ -300,18 +297,6 @@ const features = [
       }
       .font-mono {
         font-family: "JetBrains Mono", monospace;
-      }
-      .text-ink {
-        color: var(--color-ink);
-      }
-      .bg-ink {
-        background-color: var(--color-ink);
-      }
-      .border-ink {
-        border-color: var(--color-ink);
-      }
-      .bg-sun {
-        background-color: var(--color-sun);
       }
       .feature-sun {
         --tw-shadow-color: #ffc93c;

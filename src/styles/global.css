@@ -33,6 +33,11 @@
     --color-border: var(--border);
     --color-input: var(--input);
     --color-ring: var(--ring);
+
+    --color-ink: var(--ink);
+    --color-sun: var(--sun);
+    --color-coral: var(--coral);
+    --color-blue: var(--accent-blue);
 }
 
 :root {
@@ -57,6 +62,11 @@
     --border: #000;
     --input: #fff;
     --ring: #000;
+
+    --ink: #0d0d0d;
+    --sun: #ffc93c;
+    --coral: #ff5470;
+    --accent-blue: #3d5afe;
 }
 
 .dark {
