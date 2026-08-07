@@ -1,6 +1,6 @@
 ---
 import { Image } from "astro:assets";
-import { Button } from "@/components/ui/button";
+import { Button, buttonVariants } from "@/components/ui/button";
 import { Moon, Sun } from "lucide-react";
 import logo from "@/assets/ketiantools.png";
 import { defaultLang } from "@/i18n/ui";
@@ -14,13 +14,23 @@ const otherHref = otherLang === defaultLang ? "/" : `/${otherLang}/`;
 
 <nav class="sticky top-0 z-50 border-b-4 border-ink bg-background">
   <div class="mx-auto flex max-w-5xl items-center justify-between px-6 py-3">
-    <Image src={logo} alt="Ketian Tools" width={40} height={40} class="h-9 w-9" />
+    <Image
+      src={logo}
+      alt="Ketian Tools"
+      width={40}
+      height={40}
+      class="h-9 w-9"
+    />
 
     <div class="flex items-center gap-2">
       <a
         href={otherHref}
         aria-label={t("nav.langToggle")}
-        class="inline-flex h-9 w-9 items-center justify-center rounded border-2 border-ink font-mono text-xs font-semibold text-ink shadow-[3px_3px_0_0_#0D0D0D] transition-all duration-200 hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-[5px_5px_0_0_#0D0D0D] active:translate-x-1 active:translate-y-1 active:shadow-none"
+        class={buttonVariants({
+          variant: "outline",
+          size: "icon",
+          className: "border-ink text-ink font-mono text-xs font-semibold",
+        })}
       >
         {lang.toUpperCase()}
       </a>
@@ -29,7 +39,7 @@ const otherHref = otherLang === defaultLang ? "/" : `/${otherLang}/`;
         variant="outline"
         size="icon"
         aria-label={t("nav.themeToggle")}
-        className="border-ink text-ink shadow-[3px_3px_0_0_#0D0D0D]"
+        className="border-ink text-ink"
       >
         <Moon className="block dark:hidden" />
         <Sun className="hidden dark:block" />
